@@ -1,19 +1,19 @@
 from flask import *
 from camera import VideoCamera
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 app = Flask(__name__)
 
-# GPIO.setwarnings(False)
-# GPIO.setmode(GPIO.BCM)
-# GPIO.setup(2, GPIO.OUT)
-# GPIO.output(2, GPIO.LOW)
-# GPIO.setup(3, GPIO.OUT)
-# GPIO.output(3, GPIO.LOW)
-# GPIO.setup(4, GPIO.OUT)
-# GPIO.output(4, GPIO.LOW)
-# GPIO.setup(14, GPIO.OUT)
-# GPIO.output(14, GPIO.LOW)
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(2, GPIO.OUT)
+GPIO.output(2, GPIO.LOW)
+GPIO.setup(3, GPIO.OUT)
+GPIO.output(3, GPIO.LOW)
+GPIO.setup(4, GPIO.OUT)
+GPIO.output(4, GPIO.LOW)
+GPIO.setup(14, GPIO.OUT)
+GPIO.output(14, GPIO.LOW)
 
 video_camera = None
 global_frame = None
@@ -64,10 +64,10 @@ def video_viewer():
 
 def turn_off():
    print("Stop")
-#    GPIO.output(2, GPIO.LOW)
-#    GPIO.output(3, GPIO.LOW)
-#    GPIO.output(4, GPIO.LOW)
-#    GPIO.output(14, GPIO.LOW)
+   GPIO.output(2, GPIO.LOW)
+   GPIO.output(3, GPIO.LOW)
+   GPIO.output(4, GPIO.LOW)
+   GPIO.output(14, GPIO.LOW)
    
 def set_direction(direction): 
    
@@ -77,20 +77,20 @@ def set_direction(direction):
       return "Stopping"
    
    if direction == "up":
-    #   GPIO.output(2, GPIO.HIGH)
-    #   GPIO.output(4, GPIO.HIGH)
+      GPIO.output(2, GPIO.HIGH)
+      GPIO.output(4, GPIO.HIGH)
       print("Up")
    elif direction == "down":
-    #   GPIO.output(3, GPIO.HIGH)
-    #   GPIO.output(14, GPIO.HIGH)
+      GPIO.output(3, GPIO.HIGH)
+      GPIO.output(14, GPIO.HIGH)
       print("Down")
    elif direction == "left":
-    #   GPIO.output(3, GPIO.HIGH)
-    #   GPIO.output(4, GPIO.HIGH)
+      GPIO.output(3, GPIO.HIGH)
+      GPIO.output(4, GPIO.HIGH)
       print("Left")
    elif direction == "right":
-    #   GPIO.output(2, GPIO.HIGH)
-    #   GPIO.output(14, GPIO.HIGH)
+      GPIO.output(2, GPIO.HIGH)
+      GPIO.output(14, GPIO.HIGH)
       print("Right")
  
 @app.route("/move", methods=["POST"])
@@ -103,5 +103,5 @@ def move():
    return "Moving"
 
 if __name__ == '__main__':
-    host='0.0.0.0'
+    host='192.168.0.11'
     app.run(host, threaded=True, debug=False)
