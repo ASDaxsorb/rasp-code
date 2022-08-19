@@ -1,15 +1,20 @@
+import os
 import cv2
 import threading
 
 class RecordingThread (threading.Thread):
     def __init__(self, name, camera):
+        video_path = r'./static/video.avi'
+        if os.path.exists(video_path):
+            os.remove(video_path)
+            
         threading.Thread.__init__(self)
         self.name = name
         self.isRunning = True
-
+        
         self.cap = camera
         fourcc = cv2.VideoWriter_fourcc(*'XVID')
-        self.out = cv2.VideoWriter('./static/video.avi',fourcc, 20.0, (640,480))
+        self.out = cv2.VideoWriter(r'./static/video.avi',fourcc, 20.0, (640,480))
 
     def run(self):
         while self.isRunning:
