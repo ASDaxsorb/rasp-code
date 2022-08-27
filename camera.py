@@ -3,7 +3,7 @@ import cv2
 import threading
 
 class RecordingThread (threading.Thread):
-    def __init__(self, name, camera):
+    def __init__(self, name, camera, width, height):
         video_path = r'./static/video.avi'
         if os.path.exists(video_path):
             os.remove(video_path)
@@ -14,7 +14,7 @@ class RecordingThread (threading.Thread):
         
         self.cap = camera
         fourcc = cv2.VideoWriter_fourcc(*'XVID')
-        self.out = cv2.VideoWriter(r'./static/video.avi',fourcc, 20.0, (640,480))
+        self.out = cv2.VideoWriter(video_path, fourcc, 20.0, (width, height))
 
     def run(self):
         while self.isRunning:
@@ -34,6 +34,13 @@ class VideoCamera(object):
     def __init__(self):
         # Open a camera
         self.cap = cv2.VideoCapture(0)
+        w, h = 300, 300
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, w)
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, h)
+
+        # get the final frame size
+        self.width = int(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        self.height = int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
       
         # Initialize video recording environment
         self.is_record = False
@@ -72,7 +79,7 @@ class VideoCamera(object):
 
     def start_record(self):
         self.is_record = True
-        self.recordingThread = RecordingThread("Video Recording Thread", self.cap)
+        self.recordingThread = RecordingThread("Video Recording Thread", self.cap, self.width, self.height)
         self.recordingThread.start()
 
     def stop_record(self):
