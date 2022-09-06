@@ -3,11 +3,10 @@ const btnDown = document.getElementById("btnDown");
 const btnLeft = document.getElementById("btnLeft");
 const btnRight = document.getElementById("btnRight");
 const btnStop = document.getElementById("btnStop");
-
 const buttons = [btnUp, btnDown, btnLeft, btnRight];
 
 function handleClick(option) {
-  data = {
+  let data = {
     direction: option.trim().toLowerCase(),
   };
 
@@ -20,28 +19,28 @@ function handleClick(option) {
   }).then((resp) => console.log(resp));
 }
 
-btnUp.addEventListener("mousedown", () => {
+btnUp.addEventListener("pointerdown", () => {
   handleClick("up");
 });
 
-btnDown.addEventListener("mousedown", () => {
+btnDown.addEventListener("pointerdown", () => {
   handleClick("down");
 });
 
-btnLeft.addEventListener("mousedown", () => {
+btnLeft.addEventListener("pointerdown", () => {
   handleClick("left");
 });
 
-btnRight.addEventListener("mousedown", () => {
+btnRight.addEventListener("pointerdown", () => {
   handleClick("right");
 });
 
-btnStop.addEventListener("mousedown", () => {
+btnStop.addEventListener("pointerdown", () => {
   handleClick("off");
 });
 
 buttons.forEach((btn) => {
-  btn.addEventListener("mouseup", () => {
+  btn.addEventListener("pointerup", () => {
     handleClick("off");
   });
 });

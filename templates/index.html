@@ -5,78 +5,148 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
-      crossorigin="anonymous"
+      href="{{ url_for('static', filename='bootstrap.min.css') }}"
     />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
     />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='main.css') }}"
+    />
     <title>Rasp Prueba</title>
   </head>
-  <body>
+  <body class="bg-success bg-opacity-50">
     <main class="container mt-3 py-5 py-sm-3 px-4">
-      <h1>RobotRaspBerry</h1>
+      <div class="row justify-content-center">
+        <div
+          class="col-6 col-md-3 order-1 order-md-0 d-flex justify-content-center align-items-center"
+        >
+          <img
+            src="{{ url_for('static', filename='logo-ipn.png') }}"
+            alt="Logo de IPN"
+            width="100px"
+            height="100px"
+            class="d-block"
+          />
+        </div>
+        <div class="col-12 mt-3 col-md-6 text-center fw-semibold">
+          <p class="text-uppercase text-center fs-4">
+            Sistema teleoperado para adquisición de video aplicado en la
+            inspección de tuberías
+          </p>
+        </div>
+        <div
+          class="col-6 col-md-3 d-flex justify-content-center align-items-center"
+        >
+          <img
+            src="{{ url_for('static', filename='logo-esime.png') }}"
+            alt="Logo de ESIME"
+            width="100px"
+            height="100px"
+            class="d-block"
+          />
+        </div>
+      </div>
       <div id="recorder" class="my-3">
-        <button id="record" class="btn btn-success">
-          <i class="bi bi-play-circle"></i>
-        </button>
-        <button id="stop" class="btn btn-danger">
-          <i class="bi bi-pause-circle"></i>
-        </button>
-        <a id="download" class="btn btn-outline-info">
-          <i class="bi bi-download"></i>
-          Descargar
-        </a>
-        <script
-          type="text/javascript"
-          src="{{ url_for('static', filename='recorder.js') }}"
-        ></script>
+        <div class="row gap-3 px-5">
+          <button id="record" class="btn btn-success col col-auto">
+            <i class="bi bi-play-circle"></i>
+            Grabar
+          </button>
+          <button id="stop" class="btn btn-danger col col-auto">
+            <i class="bi bi-pause-circle"></i>
+            Detener
+          </button>
+          <a id="download" class="btn btn-info col col-auto">
+            <i class="bi bi-download"></i>
+            Descargar
+          </a>
+        </div>
       </div>
 
-      <div class="row gap-3 align-items-center">
-        <section class="col col-12 col-md-9">
+      <div class="row align-items-center">
+        <section class="col-12 col-md-6 position-relative">
           <img
             id="video"
             src="{{ url_for('video_viewer') }}"
-            class="rounded shadow img-fluid"
+            class="rounded shadow img-fluid border-success border-4 border"
           />
+          <span
+            class="span text-white fs-5 position-absolute top-0 start-0 p-2 bg-black bg-opacity-75 ms-4 mt-2 rounded-3"
+            id="message"
+          >
+            Grabando ...
+          </span>
         </section>
+        <div class="col-12 col-md-5 mt-3 mt-md-0">
+          <div class="row justify-content-center gap-2">
+            <button
+              type="button"
+              id="btnUp"
+              class="btn btn-outline-secondary d-block col-auto"
+            >
+              <img
+                src="{{ url_for('static', filename='up.svg') }}"
+                width="60px"
+              />
+            </button>
 
-        <div class="col col-auto">
-          <div class="row gy-3" style="width: 200px">
-            <div class="col col-12 d-flex justify-content-center">
-              <button id="btnUp" class="btn btn-primary">
-                <i class="bi bi-arrow-up-circle-fill"></i>
+            <div class="row justify-content-center gap-2">
+              <button
+                type="button"
+                id="btnLeft"
+                class="btn btn-outline-secondary d-block col-auto"
+              >
+                <img
+                  src="{{ url_for('static', filename='right.svg') }}"
+                  width="60px"
+                  class="left"
+                />
+              </button>
+              <button
+                type="button"
+                id="btnStop"
+                class="btn btn-outline-danger d-block col-auto"
+              >
+                <img
+                  src="{{ url_for('static', filename='stop.svg') }}"
+                  width="60px"
+                />
+              </button>
+              <button
+                type="button"
+                id="btnRight"
+                class="btn btn-outline-secondary d-block col-auto"
+              >
+                <img
+                  src="{{ url_for('static', filename='right.svg') }}"
+                  width="60px"
+                />
               </button>
             </div>
-
-            <div class="col">
-              <div class="row justify-content-around">
-                <button id="btnLeft" class="btn btn-primary col col-auto">
-                  <i class="bi bi-arrow-left-circle-fill"></i>
-                </button>
-                <button id="btnStop" class="btn btn-danger col col-auto">
-                  <i class="bi bi-sign-stop-fill"></i>
-                </button>
-                <button id="btnRight" class="btn btn-primary col col-auto">
-                  <i class="bi bi-arrow-right-circle-fill"></i>
-                </button>
-              </div>
-            </div>
-
-            <div class="col col-12 d-flex justify-content-center">
-              <button id="btnDown" class="btn btn-primary">
-                <i class="bi bi-arrow-down-circle-fill"></i>
-              </button>
-            </div>
+            <button
+              type="button"
+              id="btnDown"
+              class="btn btn-outline-secondary d-block col-auto"
+            >
+              <img
+                src="{{ url_for('static', filename='up.svg') }}"
+                width="60px"
+                class="down"
+              />
+            </button>
           </div>
         </div>
       </div>
     </main>
 
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='recorder.js') }}"
+    ></script>
     <script src="{{ url_for('static', filename='index.js') }}"></script>
   </body>
 </html>

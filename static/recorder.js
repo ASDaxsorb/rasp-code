@@ -1,14 +1,18 @@
 const buttonRecord = document.getElementById("record");
 const buttonStop = document.getElementById("stop");
 const downloadLink = document.getElementById("download");
+const link = document.getElementById("download");
+const messageEl = document.getElementById("message");
 
 buttonStop.disabled = true;
 downloadLink.hidden = true;
+messageEl.hidden = true;
 
 buttonRecord.onclick = function () {
   // var url = window.location.href + "record_status";
   buttonRecord.disabled = true;
   buttonStop.disabled = false;
+  messageEl.hidden = false;
 
   // disable download link
   downloadLink.hidden = true;
@@ -28,6 +32,7 @@ buttonRecord.onclick = function () {
 buttonStop.onclick = function () {
   buttonRecord.disabled = false;
   buttonStop.disabled = true;
+  messageEl.hidden = true;
 
   // XMLHttpRequest
   var xhr = new XMLHttpRequest();

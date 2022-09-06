@@ -103,5 +103,5 @@ def move():
    return "Moving"
 
 if __name__ == '__main__':
-    host='192.168.0.11'
-    app.run(host, threaded=True, debug=False)
+    host='192.168.0.17'
+    app.run(host, threaded=True, debug=True)
