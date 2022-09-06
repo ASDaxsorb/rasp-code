@@ -1,0 +1,11 @@
+.down {
+    rotate: 180deg;
+}
+
+.left {
+    rotate: -180deg;
+}
+
+img {
+    pointer-events: none;
+}
