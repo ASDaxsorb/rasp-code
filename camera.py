@@ -34,13 +34,6 @@ class VideoCamera(object):
     def __init__(self):
         # Open a camera
         self.cap = cv2.VideoCapture(0)
-        w, h = 300, 300
-        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, w)
-        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, h)
-
-        # get the final frame size
-        self.width = int(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-        self.height = int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
       
         # Initialize video recording environment
         self.is_record = False
