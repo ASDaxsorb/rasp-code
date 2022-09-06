@@ -14,7 +14,7 @@ class RecordingThread (threading.Thread):
         
         self.cap = camera
         fourcc = cv2.VideoWriter_fourcc(*'XVID')
-        self.out = cv2.VideoWriter(video_path, fourcc, 20.0, (width, height))
+        self.out = cv2.VideoWriter(video_path, fourcc, 20.0, (640, 480))
 
     def run(self):
         while self.isRunning:
