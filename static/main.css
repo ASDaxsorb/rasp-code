@@ -11,5 +11,6 @@ img {
 }
 
 #video {
-    transform: rotateZ(180deg), rotateY(180deg);
+    transform: rotateZ(180deg);
+    transform: rotateY(180deg) ;
 }
