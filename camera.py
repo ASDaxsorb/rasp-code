@@ -69,7 +69,7 @@ class VideoCamera(object):
         now = datetime.datetime.now()
         now = now.strftime("%Y-%m-%d %H:%M:%S")
     
-        h = frame.shape[0]
+        h = 640
         current = time.gmtime(time.time() - self.start_time)
         current = time.strftime("%H:%M:%S", current)
         frame = cv2.putText(frame, now,
