@@ -27,7 +27,7 @@ class RecordingThread (threading.Thread):
             now = datetime.datetime.now()
             now = now.strftime("%Y-%m-%d %H:%M:%S")
     
-            h = frame.shape[0]
+            h = 640
             frame = cv2.putText(frame, now,
                                 (10, h - 30),
                                 font, 1,
