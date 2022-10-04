@@ -19,11 +19,11 @@ class RecordingThread (threading.Thread):
         self.out = cv2.VideoWriter(video_path, fourcc, 20.0, (640, 480))
 
     def run(self):
+        font = cv2.FONT_HERSHEY_SIMPLEX
         while self.isRunning:
             ret, frame = self.cap.read()
             frame = cv2.flip(frame, 0)
             
-            font = cv2.FONT_HERSHEY_SIMPLEX
             now = datetime.datetime.now()
             now = now.strftime("%Y-%m-%d %H:%M:%S")
     
@@ -63,26 +63,27 @@ class VideoCamera(object):
     
     def get_frame(self):
         ret, frame = self.cap.read()
-        frame = cv2.flip(frame, 0)
+        # frame = cv2.flip(frame, 0)
         
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        now = datetime.datetime.now()
-        now = now.strftime("%Y-%m-%d %H:%M:%S")
+        # font = cv2.FONT_HERSHEY_SIMPLEX
+        # now = datetime.datetime.now()
+        # now = now.strftime("%Y-%m-%d %H:%M:%S")
     
-        h = 480
-        current = time.gmtime(time.time() - self.start_time)
-        current = time.strftime("%H:%M:%S", current)
-        frame = cv2.putText(frame, now,
-                            (10, h - 30),
-                            font, 1,
-                            (255, 255, 255),
-                            2, cv2.LINE_8)
-        if self.is_record:
-            frame = cv2.putText(frame, current,
-                                (10, h - 90),
-                                font, 1,
-                                (255, 255, 255),
-                                2, cv2.LINE_8)
+        # h = 480
+        # current = time.gmtime(time.time() - self.start_time)
+        # current = time.strftime("%H:%M:%S", current)
+        # frame = cv2.putText(frame, now,
+        #                     (10, h - 30),
+        #                     font, 1,
+        #                     (255, 255, 255),
+        #                     2, cv2.LINE_8)
+        
+        # if self.is_record:
+        #     frame = cv2.putText(frame, current,
+        #                         (10, h - 90),
+        #                         font, 1,
+        #                         (255, 255, 255),
+        #                         2, cv2.LINE_8)
 
         if ret:
             ret, jpeg = cv2.imencode('.jpg', frame)

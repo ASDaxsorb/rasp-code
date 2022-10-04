@@ -9,3 +9,7 @@
 img {
     pointer-events: none;
 }
+
+#video {
+    transform: rotateZ(180deg);
+}
