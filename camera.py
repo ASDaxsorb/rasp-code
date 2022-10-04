@@ -27,7 +27,7 @@ class RecordingThread (threading.Thread):
             now = datetime.datetime.now()
             now = now.strftime("%Y-%m-%d %H:%M:%S")
     
-            h = 640
+            h = 480
             frame = cv2.putText(frame, now,
                                 (10, h - 30),
                                 font, 1,
@@ -69,7 +69,7 @@ class VideoCamera(object):
         now = datetime.datetime.now()
         now = now.strftime("%Y-%m-%d %H:%M:%S")
     
-        h = 640
+        h = 480
         current = time.gmtime(time.time() - self.start_time)
         current = time.strftime("%H:%M:%S", current)
         frame = cv2.putText(frame, now,
