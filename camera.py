@@ -49,7 +49,7 @@ class VideoCamera(object):
     def __init__(self):
         # Open a camera
         self.start_time = time.time()
-        self.cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+        self.cap = cv2.VideoCapture(0)
 
         # Initialize video recording environment
         self.is_record = False
