@@ -93,12 +93,12 @@ def set_direction(direction):
       GPIO.output(14, GPIO.HIGH)
       print("Down")
    elif direction == "left":
-      GPIO.output(3, GPIO.HIGH)
-      GPIO.output(4, GPIO.HIGH)
-      print("Left")
-   elif direction == "right":
       GPIO.output(2, GPIO.HIGH)
       GPIO.output(14, GPIO.HIGH)
+      print("Left")
+   elif direction == "right":
+      GPIO.output(3, GPIO.HIGH)
+      GPIO.output(4, GPIO.HIGH)
       print("Right")
  
 @app.route("/move", methods=["POST"])
