@@ -11,5 +11,5 @@ img {
 }
 
 #video {
-    transform: scaleX(-1);
+    transform: scaleY(-1);
 }
