@@ -4,7 +4,7 @@ import threading
 import time
 import datetime
 
-class RecordingThread (threading.Thread):
+class RecordingThread(threading.Thread):
     def __init__(self, name, camera):
         video_path = r'./static/video.avi'
         if os.path.exists(video_path):
@@ -16,13 +16,13 @@ class RecordingThread (threading.Thread):
         
         self.cap = camera
         fourcc = cv2.VideoWriter_fourcc(*'XVID')
-        self.out = cv2.VideoWriter(video_path, fourcc, 20.0, (640, 480))
+        self.out = cv2.VideoWriter(video_path, fourcc, 30.0, (640, 480))
 
     def run(self):
         font = cv2.FONT_HERSHEY_SIMPLEX
         while self.isRunning:
             ret, frame = self.cap.read()
-            frame = cv2.flip(frame, 0)
+            frame = cv2.flip(frame, -1)
             
             now = datetime.datetime.now()
             now = now.strftime("%Y-%m-%d %H:%M:%S")
